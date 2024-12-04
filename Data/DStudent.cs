@@ -74,7 +74,7 @@ namespace Data
 
         }        
 
-        public int Insert(Student student)
+        public int Insert(string firstName, string lastName)
         {          
             using (SqlConnection connection = new SqlConnection(Constantes._connectionString))
             {
@@ -82,22 +82,21 @@ namespace Data
                 using (SqlCommand command = new SqlCommand("USP_InsertStudent", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@FirstName", student.FirstName);
-                    command.Parameters.AddWithValue("@@LastName", student.LastName);                    
-
-                    /*
-                    SqlParameter idOutput = new SqlParameter("@IdCabecera", SqlDbType.Int)
+                    command.Parameters.AddWithValue("@FirstName", firstName);
+                    command.Parameters.AddWithValue("@LastName", lastName);                    
+                    
+                    SqlParameter idOutput = new SqlParameter("@StudentID", SqlDbType.Int)
                     {
                         Direction = ParameterDirection.Output
                     };
                     command.Parameters.Add(idOutput);
-                    */
+                    
                     command.ExecuteNonQuery();
 
                     //(int)idOutput.Value: Retorna el valor del parámetro de salida
 
-                    //return (int)idOutput.Value;
-                    return 0;
+                    return (int)idOutput.Value;
+                    //return 0;
                 }
             }
 

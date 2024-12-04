@@ -19,10 +19,10 @@ namespace Business
             return students;
         }
 
-        public void Grabar(Student student) { 
+        public void Grabar(string firstname, string lastname) { 
             DStudent dStudent = new DStudent();
 
-            int idstudent = dStudent.Insert(student);
+            int idstudent = dStudent.Insert(firstname, lastname);
         }
     }
 }

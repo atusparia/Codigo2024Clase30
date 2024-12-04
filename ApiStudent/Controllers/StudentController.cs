@@ -18,9 +18,9 @@ namespace ApiStudent.Controllers
         }
 
         [HttpPost]
-        public void Insert(Student student) {
+        public void Insert(string firstname, string lastname) {
             BStudent bStudent = new BStudent();
-            bStudent.Grabar(null);        
+            bStudent.Grabar(firstname, lastname);        
         }
     }
 
